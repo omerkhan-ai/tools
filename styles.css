@@ -6,67 +6,212 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: #0d1117;
-  color: #c9d1d9;
-  padding: 40px 20px;
-  line-height: 1.6;
+  font-family: 'Fira Code', monospace;
+  background: #222831;
+  color: #DFD0B8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  overflow-x: hidden;
 }
 
-.container {
-  max-width: 800px;
-  margin: auto;
-  padding: 0 20px;
+.terminal {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
 }
 
-h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #f0f6fc;
+.hero {
+  margin-bottom: 4rem;
 }
 
-p {
-  margin-bottom: 30px;
-  color: #8b949e;
+#title {
+  font-size: 3rem;
+  color: #DFD0B8;
+  text-shadow: 0 0 15px #94897988;
+  margin-bottom: 0.5rem;
 }
 
+.subtitle {
+  font-size: 1rem;
+  color: #948979;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 5px #94897955;
+}
+
+/* Tool Grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+/* Tool Cards */
 .tool-card {
-  background-color: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 6px;
-  padding: 20px;
-  margin-bottom: 20px;
-  transition: background-color 0.2s ease;
+  background: #393E46;
+  border: 1px solid #94897955;
+  padding: 2rem;
+  border-radius: 14px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.tool-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, #DFD0B833 10%, transparent 60%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: width 0.5s ease, height 0.5s ease, opacity 0.3s;
+}
+
+.tool-card:hover::before {
+  width: 300%;
+  height: 300%;
+  opacity: 1;
 }
 
 .tool-card:hover {
-  background-color: #21262d;
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px #94897966;
+  border-color: #DFD0B888;
 }
 
 .tool-card h2 {
-  font-size: 1.3rem;
-  color: #58a6ff;
-  margin-bottom: 8px;
+  color: #DFD0B8;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .tool-card p {
-  color: #8b949e;
-  margin-bottom: 16px;
+  color: #cfcfcf;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
-.btn {
+.tool-card a {
   display: inline-block;
-  background-color: #238636;
-  color: #ffffff;
-  padding: 10px 20px;
+  padding: 0.6rem 1.2rem;
+  background: #DFD0B8;
+  color: #222831;
   border-radius: 6px;
-  font-weight: 600;
+  font-weight: bold;
   text-decoration: none;
-  font-size: 0.95rem;
-  transition: background-color 0.2s ease;
+  transition: 0.2s ease;
 }
 
-.btn:hover {
-  background-color: #2ea043;
+.tool-card a:hover {
+  background: #948979;
+  color: #fff;
+}
+ 
+
+.footer {
+  margin-top: 5rem;
+  padding: 2rem 1rem;
+  background-color: #1f232b;
+  border-top: 1px solid #94897933;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-left p {
+  color: #DFD0B8;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.footer-right {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.social {
+  text-decoration: none;
+  font-weight: bold;
+  color: #DFD0B8;
+  padding: 0.5rem 1rem;
+  border: 1px solid #94897955;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, #DFD0B822, transparent 60%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+.social:hover::before {
+  width: 200%;
+  height: 200%;
+  opacity: 1;
+}
+
+.social.youtube:hover {
+  background-color: #FF0000;
+  color: #fff;
+  box-shadow: 0 0 12px #ff000088;
+}
+
+.social.discord:hover {
+  background-color: #5865F2;
+  color: #fff;
+  box-shadow: 0 0 12px #5865f288;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-right {
+    justify-content: center;
+  }
+}
+/* Make the body take full height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Allow main content to push footer down */
+.main-content {
+  flex: 1;
+  padding-bottom: 2rem; /* optional spacing */
 }
