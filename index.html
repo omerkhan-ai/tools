@@ -4,88 +4,603 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ToolVault</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #0f1923;
+      color: #e6e6e6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding: 3rem 0;
+      position: relative;
+    }
+
+    #title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4rem;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      position: relative;
+      display: inline-block;
+    }
+
+    #title::after {
+      content: "|";
+      animation: blink 1s infinite;
+      margin-left: 5px;
+      opacity: 1;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      color: #a0a0a0;
+      letter-spacing: 2px;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+
+    /* Decorative Elements */
+    .decorative-line {
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #7D8082, transparent);
+      margin: 2rem auto;
+      position: relative;
+    }
+
+    .decorative-line::before,
+    .decorative-line::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      background: #7D8082;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    .decorative-line::before {
+      left: 0;
+    }
+
+    .decorative-line::after {
+      right: 0;
+    }
+
+    /* Tools Grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      padding: 0 1rem;
+      position: relative;
+    }
+
+    /* Tool Cards */
+    .tool-card {
+      background: #0a121a;
+      border: 1px solid #2a3a4a;
+      padding: 2.5rem 2rem;
+      border-radius: 0;
+      position: relative;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .tool-card:hover {
+      border-color: #7D8082;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .tool-card h2 {
+      color: #fff;
+      font-size: 1.7rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 600;
+    }
+
+    .tool-card h2 .icon {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a2a3a;
+      border: 1px solid #2a3a4a;
+    }
+
+    .tool-card p {
+      color: #a0a0a0;
+      font-size: 1.1rem;
+      margin-bottom: 1.8rem;
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .button-container {
+      margin-top: auto;
+    }
+
+    /* Custom Button Styles - Match the theme */
+    .button {
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      border: none;
+      background: none;
+      color: #0f1923;
+      cursor: pointer;
+      position: relative;
+      padding: 8px;
+      margin-bottom: 0;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 14px;
+      transition: all .15s ease;
+      width: 100%;
+      text-decoration: none;
+      display: block;
+    }
+
+    .button::before,
+    .button::after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 0;
+      left: 0;
+      height: calc(50% - 5px);
+      border: 1px solid #7D8082;
+      transition: all .15s ease;
+    }
+
+    .button::before {
+      top: 0;
+      border-bottom-width: 0;
+    }
+
+    .button::after {
+      bottom: 0;
+      border-top-width: 0;
+    }
+
+    .button:active,
+    .button:focus {
+      outline: none;
+    }
+
+    .button:active::before,
+    .button:active::after {
+      right: 3px;
+      left: 3px;
+    }
+
+    .button:active::before {
+      top: 3px;
+    }
+
+    .button:active::after {
+      bottom: 3px;
+    }
+
+    .button_lg {
+      position: relative;
+      display: block;
+      padding: 15px 20px;
+      color: #fff;
+      background-color: #0f1923;
+      overflow: hidden;
+      box-shadow: inset 0px 0px 0px 1px transparent;
+      text-align: center;
+    }
+
+    .button_lg::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 2px;
+      background-color: #0f1923;
+    }
+
+    .button_lg::after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 4px;
+      height: 4px;
+      background-color: #0f1923;
+      transition: all .2s ease;
+    }
+
+    .button_sl {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: -1px;
+      left: -8px;
+      width: 0;
+      background-color: #ff4655;
+      transform: skew(-15deg);
+      transition: all .2s ease;
+    }
+
+    .button_text {
+      position: relative;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .button:hover {
+      color: #0f1923;
+    }
+
+    .button:hover .button_sl {
+      width: calc(100% + 15px);
+    }
+
+    .button:hover .button_lg::after {
+      background-color: #fff;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 6rem;
+      padding: 3rem 1rem;
+      background: #0a121a;
+      border-top: 1px solid #2a3a4a;
+      position: relative;
+    }
+
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #7D8082, transparent);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-left p {
+      color: #e6e6e6;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 500;
+    }
+
+    .footer-left p::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: #7D8082;
+      border-radius: 50%;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      text-decoration: none;
+      font-weight: 600;
+      color: #e6e6e6;
+      padding: 1rem 2rem;
+      border: 1px solid #2a3a4a;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      background: #0a121a;
+    }
+
+    .social:hover {
+      border-color: #7D8082;
+      background: #1a2a3a;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      #title {
+        font-size: 3rem;
+      }
+      
+      .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #title {
+        font-size: 2.5rem;
+      }
+      
+      .subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .footer-right {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #title {
+        font-size: 2rem;
+      }
+      
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tool-card {
+        padding: 2rem 1.5rem;
+      }
+      
+      .tool-card h2 {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* Entrance Animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tool-card {
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    /* Staggered Animation */
+    .tool-card:nth-child(1) { animation-delay: 0.1s; }
+    .tool-card:nth-child(2) { animation-delay: 0.2s; }
+    .tool-card:nth-child(3) { animation-delay: 0.3s; }
+    .tool-card:nth-child(4) { animation-delay: 0.4s; }
+    .tool-card:nth-child(5) { animation-delay: 0.5s; }
+    .tool-card:nth-child(6) { animation-delay: 0.6s; }
+    .tool-card:nth-child(7) { animation-delay: 0.7s; }
+    .tool-card:nth-child(8) { animation-delay: 0.8s; }
+  </style>
 </head>
 <body>
-  <div class="terminal">
+  <div class="container">
     <div class="hero">
       <h1 id="title">ToolVault</h1>
       <p class="subtitle">Explore your essential downloads, from deep cleaners to smart checkers.</p>
+      <div class="decorative-line"></div>
     </div>
 
     <main class="main-content">
-    <div class="tools-container">
-
-    <section class="tools-grid">
-      <div class="tool-card">
-        <h2>Cleaner</h2>
-        <p>Deep clean your system with a single click.</p>
-        <a href="cleaner.zip">Download</a>
-      </div>
-      <div class="tool-card">
-        <h2>Serial Checker</h2>
-        <p>Verify your software serials instantly.</p>
-        <a href="omrfrfr serials.bat">Download</a>
-      </div>
-
-         <div class="tool-card">
-        <h2>Windows activator</h2>
-        <p>activate windows for free</p>
-        <a href="windows activator.cmd">Download</a>
-      </div>
-
-         <div class="tool-card">
-        <h2>IDM Trial Reset</h2>
-        <p>Reset the trial forever</p>
-        <a href="IDM.Trial.Reset.v1.0.0.zip">Download</a>
-      </div>
-
-       <div class="tool-card">
-        <h2>CapCut Pro</h2>
-        <p>Cracked CapCut Pro version</p>
-        <a href="https://capcut.en.uptodown.com/windows/download/88694144">Download</a>
-      </div>
-
+      <div class="tools-grid">
         <div class="tool-card">
-        <h2>Crossair X</h2>
-        <p>Cracked Crossair X</p>
-        <a href="https://gofile.io/d/CJQF8P">Download</a>
-      </div>
-
-        <div class="tool-card">
-        <h2>Premiere Pro 2023</h2>
-        <p>cracked 2023 premiere pro</p>
-        <a href="oops.html">Download</a>
-      </div>
-
-       <div class="tool-card">
-        <h2>OMR Tweaking util</h2>
-        <p>full fledge tweeking util (free RIXEN tweeks)</p>
-        <a href="https://gofile.io/d/QnDcpS">Download</a>
-      </div>
-
+          <h2><span class="icon">🧹</span> Cleaner</h2>
+          <p>Deep clean your system with a single click. Remove unnecessary files and optimize performance.</p>
+          <div class="button-container">
+            <a href="https://mega.nz/folder/JOV10SSQ#HL-N-04sp3E4hctdrL5FpQ" class="button" download>
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Download Now</span>
+              </span>
+            </a>
+          </div>
         </div>
-  </main>
-      <!-- Add more cards as needed -->
-
+        
+        <div class="tool-card">
+          <h2><span class="icon">🔍</span> Serial Checker</h2>
+          <p>Verify your software serials instantly. Validate licenses and check authenticity.</p>
+          <div class="button-container">
+            <a href="omrfrfr_serials.bat" class="button" download>
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Download Now</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="tool-card">
+          <h2><span class="icon">🔑</span> Windows Activator</h2>
+          <p>Activate Windows for free. Permanent activation without product key.</p>
+          <div class="button-container">
+            <a href="windows_activator.cmd" class="button" download>
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Download Now</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="tool-card">
+          <h2><span class="icon">🔄</span> IDM Trial Reset</h2>
+          <p>Reset the trial forever. Unlimited use of Internet Download Manager.</p>
+          <div class="button-container">
+            <a href="IDM.Trial.Reset.v1.0.0.zip" class="button" download>
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Download Now</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="tool-card">
+          <h2><span class="icon">✂️</span> CapCut Pro</h2>
+          <p>Cracked CapCut Pro version. Professional video editing without subscription.</p>
+          <div class="button-container">
+            <a href="https://capcut.en.uptodown.com/windows/download/88694144" class="button" target="_blank">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Download Now</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="tool-card">
+          <h2><span class="icon">🎮</span> Crossair X</h2>
+          <p>Cracked Crossair X. Premium gaming experience without payment.</p>
+          <div class="button-container">
+            <a href="https://gofile.io/d/CJQF8P" class="button" target="_blank">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Download Now</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="tool-card">
+          <h2><span class="icon">🎬</span> Premiere Pro 2023</h2>
+          <p>Cracked 2023 Premiere Pro. Professional video editing suite unlocked.</p>
+          <div class="button-container">
+            <a href="https://gofile.io/d/8OTgD6" class="button" target="_blank">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Download Now</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="tool-card">
+          <h2><span class="icon">🔧</span> OMR Tweaking Util</h2>
+          <p>Full-fledged tweaking utility. Free RIXEN tweaks for ultimate performance.</p>
+          <div class="button-container">
+            <a href="https://gofile.io/d/QnDcpS" class="button" target="_blank">
+              <span class="button_lg">
+                <span class="button_sl"></span>
+                <span class="button_text">Download Now</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="script.js"></script>
 
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-left">
-        <p>— for the people 💻</p>
+        <p>for the people 💻</p>
       </div>
       <div class="footer-right">
-        <a href="https://www.youtube.com/@Omrfrfr" target="_blank" class="social youtube">YouTube</a>
-        <a href="https://discord.gg/https://discord.gg/5YpdeZRz" target="_blank" class="social discord">Discord</a>
+        <a href="https://www.youtube.com/@Omrfrfr" target="_blank" class="social youtube">
+          📺 YouTube
+        </a>
+        <a href="https://discord.gg/5YpdeZRz" target="_blank" class="social discord">
+          💬 Discord
+        </a>
       </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const title = document.getElementById("title");
+      const text = "Omrfrfr's Toolbox";
+      let index = 0;
+
+      // Typing animation
+      function typeWriter() {
+        if (index < text.length) {
+          title.textContent = text.substring(0, index + 1);
+          index++;
+          setTimeout(typeWriter, 100);
+        } else {
+          // Remove cursor after typing
+          setTimeout(() => {
+            title.innerHTML = text;
+          }, 500);
+        }
+      }
+
+      // Start animations
+      title.textContent = "";
+      typeWriter();
+    });
+  </script>
 </body>
 </html>
