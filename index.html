@@ -290,6 +290,59 @@
       background-color: #fff;
     }
 
+    /* Notification Styles */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0a121a;
+      border: 1px solid #2a3a4a;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      max-width: 350px;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification.success {
+      border-left: 4px solid #4CAF50;
+    }
+
+    .notification.info {
+      border-left: 4px solid #2196F3;
+    }
+
+    .notification-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .notification-icon {
+      font-size: 20px;
+    }
+
+    .notification-text {
+      flex: 1;
+    }
+
+    .notification-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .notification-message {
+      font-size: 14px;
+      color: #a0a0a0;
+    }
+
     /* Footer */
     .footer {
       margin-top: 6rem;
@@ -396,6 +449,12 @@
       .footer-right {
         justify-content: center;
       }
+      
+      .notification {
+        left: 20px;
+        right: 20px;
+        max-width: none;
+      }
     }
 
     @media (max-width: 480px) {
@@ -458,7 +517,7 @@
           <h2><span class="icon">🧹</span> Cleaner</h2>
           <p>Deep clean your system with a single click. Remove unnecessary files and optimize performance.</p>
           <div class="button-container">
-            <a href="https://mega.nz/folder/JOV10SSQ#HL-N-04sp3E4hctdrL5FpQ" class="button" download>
+            <a href="https://mega.nz/folder/JOV10SSQ#HL-N-04sp3E4hctdrL5FpQ" class="button download-link" data-tool="Cleaner" download>
               <span class="button_lg">
                 <span class="button_sl"></span>
                 <span class="button_text">Download Now</span>
@@ -471,7 +530,7 @@
           <h2><span class="icon">🔍</span> Serial Checker</h2>
           <p>Verify your software serials instantly. Validate licenses and check authenticity.</p>
           <div class="button-container">
-            <a href="omrfrfr serials.bat" class="button" download>
+            <a href="omrfrfr serials.bat" class="button download-link" data-tool="Serial Checker" download>
               <span class="button_lg">
                 <span class="button_sl"></span>
                 <span class="button_text">Download Now</span>
@@ -484,7 +543,7 @@
           <h2><span class="icon">🔑</span> Windows Activator</h2>
           <p>Activate Windows for free. Permanent activation without product key.</p>
           <div class="button-container">
-            <a href="windows activator.cmd" class="button" download>
+            <a href="windows activator.cmd" class="button download-link" data-tool="Windows Activator" download>
               <span class="button_lg">
                 <span class="button_sl"></span>
                 <span class="button_text">Download Now</span>
@@ -497,7 +556,7 @@
           <h2><span class="icon">🔄</span> IDM Trial Reset</h2>
           <p>Reset the trial forever. Unlimited use of Internet Download Manager.</p>
           <div class="button-container">
-            <a href="IDM.Trial.Reset.v1.0.0.zip" class="button" download>
+            <a href="IDM.Trial.Reset.v1.0.0.zip" class="button download-link" data-tool="IDM Trial Reset" download>
               <span class="button_lg">
                 <span class="button_sl"></span>
                 <span class="button_text">Download Now</span>
@@ -510,7 +569,7 @@
           <h2><span class="icon">✂️</span> CapCut Pro</h2>
           <p>Cracked CapCut Pro version. Professional video editing without subscription.</p>
           <div class="button-container">
-            <a href="https://capcut.en.uptodown.com/windows/download/88694144" class="button" target="_blank">
+            <a href="https://capcut.en.uptodown.com/windows/download/88694144" class="button download-link" data-tool="CapCut Pro" target="_blank">
               <span class="button_lg">
                 <span class="button_sl"></span>
                 <span class="button_text">Download Now</span>
@@ -523,7 +582,7 @@
           <h2><span class="icon">🎮</span> Crossair X</h2>
           <p>Cracked Crossair X. Premium gaming experience without payment.</p>
           <div class="button-container">
-            <a href="https://gofile.io/d/CJQF8P" class="button" target="_blank">
+            <a href="https://gofile.io/d/CJQF8P" class="button download-link" data-tool="Crossair X" target="_blank">
               <span class="button_lg">
                 <span class="button_sl"></span>
                 <span class="button_text">Download Now</span>
@@ -536,7 +595,7 @@
           <h2><span class="icon">🎬</span> Premiere Pro 2023</h2>
           <p>Cracked 2023 Premiere Pro. Professional video editing suite unlocked.</p>
           <div class="button-container">
-            <a href="https://gofile.io/d/8OTgD6" class="button" target="_blank">
+            <a href="https://gofile.io/d/8OTgD6" class="button download-link" data-tool="Premiere Pro 2023" target="_blank">
               <span class="button_lg">
                 <span class="button_sl"></span>
                 <span class="button_text">Download Now</span>
@@ -549,7 +608,7 @@
           <h2><span class="icon">🔧</span> OMR Tweaking Util</h2>
           <p>Full-fledged tweaking utility. Free RIXEN tweaks for ultimate performance.</p>
           <div class="button-container">
-            <a href="https://gofile.io/d/QnDcpS" class="button" target="_blank">
+            <a href="https://gofile.io/d/QnDcpS" class="button download-link" data-tool="OMR Tweaking Util" target="_blank">
               <span class="button_lg">
                 <span class="button_sl"></span>
                 <span class="button_text">Download Now</span>
@@ -560,6 +619,9 @@
       </div>
     </main>
   </div>
+
+  <!-- Notification Container -->
+  <div id="notification-container"></div>
 
   <footer class="footer">
     <div class="footer-container">
@@ -596,6 +658,65 @@
           }, 500);
         }
       }
+
+      // Show notification function
+      function showNotification(title, message, type = 'info') {
+        const notificationContainer = document.getElementById('notification-container');
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        
+        notification.innerHTML = `
+          <div class="notification-content">
+            <div class="notification-icon">${type === 'success' ? '✅' : 'ℹ️'}</div>
+            <div class="notification-text">
+              <div class="notification-title">${title}</div>
+              <div class="notification-message">${message}</div>
+            </div>
+          </div>
+        `;
+        
+        notificationContainer.appendChild(notification);
+        
+        // Show notification
+        setTimeout(() => {
+          notification.classList.add('show');
+        }, 100);
+        
+        // Remove notification after 5 seconds
+        setTimeout(() => {
+          notification.classList.remove('show');
+          setTimeout(() => {
+            notificationContainer.removeChild(notification);
+          }, 300);
+        }, 5000);
+      }
+
+      // Add click event listeners to download links
+      const downloadLinks = document.querySelectorAll('.download-link');
+      downloadLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const toolName = this.getAttribute('data-tool');
+          const isExternal = this.hasAttribute('target');
+          
+          // Show download starting notification
+          showNotification(
+            'Download Starting',
+            `Starting download for ${toolName}...`,
+            'info'
+          );
+          
+          // For external links, show redirect notification
+          if (isExternal) {
+            setTimeout(() => {
+              showNotification(
+                'Redirecting',
+                `Redirecting to download source for ${toolName}...`,
+                'info'
+              );
+            }, 1000);
+          }
+        });
+      });
 
       // Start animations
       title.textContent = "";
